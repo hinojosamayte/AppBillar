@@ -1,0 +1,126 @@
+﻿<Page
+    x:Class="GestioTorneig.Pages.TorneoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GestioTorneig.Pages"
+    xmlns:localControls="using:GestioTorneig.Controls"
+    xmlns:localConverters="using:GestioTorneig.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <localConverters:DoubleToPercentConverter x:Key="doubleToPercent"/>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:ConnectionId='1' x:Name="gridGrups">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="137*"/>
+                <RowDefinition Height="178*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Vertical" Margin="0,0,0,755" Grid.RowSpan="1">
+                <TextBlock Text="Perits" FontSize="60" Padding="25,0,0,0" />
+                <ScrollViewer VerticalScrollBarVisibility="Visible" Height="300">
+                <localControls:Control_ListViewDBCreator x:ConnectionId='20' x:Name="lvTorneos" Background="AliceBlue"
+                                                        
+                                                         Height="300" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+                </ScrollViewer>
+                <Grid Padding="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:ConnectionId='17' x:Name="btnNou" Content="Nou Perit" Tag="Nou" Margin="45,0,0,0"/>
+                    <!--Click="btnNou_editar_Click"-->
+                    <Button x:ConnectionId='18' x:Name="btnEditar" Content="Editar Perit" Tag="Editar" Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,45,0"  IsEnabled="False"/>
+                    <!--Click="btnNou_editar_Click"-->
+                    <Button x:ConnectionId='19' x:Name="btnEsborrar" Content="Esborrar Perit" Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,45,0" IsEnabled="False" />
+                    <!--Click="btnEsborrar_Click"-->
+                </Grid>
+                <TextBlock x:ConnectionId='16' x:Name="tbMissatgeError" Foreground="PaleVioletRed" Margin="50,0,0,0"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.Row="1" Margin="0,0.333,0,0">
+                <TextBlock Text="Grups" FontSize="60" Padding="25,0,0,0" />
+                <StackPanel Orientation="Horizontal" Margin="45,20,0,0">
+                    <TextBlock Text="Nom Grup" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    <TextBox x:ConnectionId='11' x:Name="txtnom" Margin="10,0,0,0" Text="" Width="100" />
+                    <TextBlock Text="Obj.Caramboles" Margin="10,0,0,0" VerticalAlignment="Center" />
+                    <TextBox x:ConnectionId='12' x:Name="txtcCaram" Margin="10,0,0,0" Text=""/>
+                    <TextBlock Text="Limit Entrades" Margin="10,0,0,0" VerticalAlignment="Center" />
+                    <TextBox x:ConnectionId='13' x:Name="txtEntrades" Margin="10,0,0,0" Text="" Width="55"/>
+                    <Button x:ConnectionId='14' x:Name="AddGroup" Margin="10,0,0,0" Content="Add" Width="55"                       />
+                    <Button x:ConnectionId='15' x:Name="CloseGroup" Margin="10,0,0,0" Content="Closed" Width="65"                          />
+                    <!--<Button x:Name="btnFiltreOn" Content="Filtre On"  Margin="10,0,0,0" Click="btnFiltreOn_Click" IsEnabled="False"/>
+                    <Button x:Name="btnFiltreOff" Content="Filtre Off" Margin="10,0,0,0" Click="btnFiltreOff_Click"/>-->
+
+                </StackPanel>
+               
+                    <TextBlock Text="Inscrits" FontSize="60" Padding="25,0,0,0" />
+                <ScrollViewer VerticalScrollBarVisibility="Visible" Height="300" >
+
+                    <localControls:Control_ListViewDBCreator x:ConnectionId='10' x:Name="lvSInscrits" Background="AliceBlue"
+                                                        Height="500" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+                </ScrollViewer>
+            </StackPanel>
+
+        </Grid>
+
+        <Grid x:ConnectionId='2' x:Name="gridAgenda" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" Margin="-5,0,5,0">
+                <TextBlock Text="Creació de Tornejos" FontSize="60" Padding="25,0,0,0"/>
+                <ScrollViewer VerticalScrollBarVisibility="Visible" Height="300" >
+                    <localControls:Control_ListViewDBCreator x:ConnectionId='9' x:Name="lvSTorneos" Background="AliceBlue"
+                    Height="300" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+                </ScrollViewer>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="Data  Inici: " VerticalAlignment="Center"/>
+                    <CalendarDatePicker x:ConnectionId='4' x:Name="dpDataini" Margin="10,0,0,0"/>
+                    <TextBlock Text="Titol: " VerticalAlignment="Center" Margin="20,0,0,0"/>
+                    <TextBox x:ConnectionId='5' x:Name="tbTitol" Text="1" Width="150" Margin="20,0,0,0"/>
+                    <TextBlock Text="Modalitat: " VerticalAlignment="Center" Margin="20,0,0,0"/>
+                    <ComboBox x:ConnectionId='6' x:Name="cboxModalitat" Width="150" Margin="20,0,0,0"/>
+                    <Button x:ConnectionId='7' x:Name="btnAddTorneo" Content="Add" Margin="20,0,0,0"                           />
+                    <Button x:ConnectionId='8' x:Name="btnCloseTorneo" Margin="10,0,0,0" Content="Closed" Width="65"                              />
+                </StackPanel>
+                <TextBlock x:ConnectionId='3' x:Name="tbErrorTorneo" Text="" Foreground="PaleVioletRed" Margin="0,20,0,0" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <!--<Border Grid.Row="1" Padding="40">
+                <localControls:ControlAgenda x:Name="controlAgenda" />
+            </Border>-->
+
+
+        </Grid>
+
+
+
+
+
+
+    </Grid>
+
+
+</Page>
+<!--Width="{Binding ActualWidth, ElementName=gridPerits,
+                                                        Converter={StaticResource doubleToPercent},  ConverterParameter='0.9', Mode=OneTime}"-->
+<!--Width="{Binding ActualWidth, 
+                                                            ElementName=gridAgenda,
+                                                            Converter={StaticResource doubleToPercent},
+                    ConverterParameter='0.9', Mode=OneTime}"-->
+
+
+
+<!--Width="{Binding ActualWidth, ElementName=gridPerits, Converter={StaticResource doubleToPercent},ConverterParameter='0.9', Mode=OneTime}"--> 
+
